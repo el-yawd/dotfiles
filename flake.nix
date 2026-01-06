@@ -8,10 +8,6 @@
       # home-manager should track the same nixpkgs as the system
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    inform7-nix = {
-      url = "github:mbrock/inform7-nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
   outputs =
@@ -19,12 +15,11 @@
       self,
       nixpkgs,
       home-manager,
-      inform7-nix,
       ...
     }:
     let
       shared = [
-        ./modules/sway.nix
+        ./modules/sway
        
         # Make home-manager use system pkgs
         home-manager.nixosModules.home-manager
@@ -38,7 +33,6 @@
       nixosConfigurations = {
         melchior = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
-          specialArgs = { inherit inform7-nix; };
           modules = shared ++ [
             ./hosts/melchior/configuration.nix
             ./hosts/melchior/hardware-configuration.nix
