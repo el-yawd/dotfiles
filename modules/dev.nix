@@ -17,5 +17,6 @@
     nixd
     gnumake
     fastfetch
+    perf
   ];
 }

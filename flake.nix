@@ -18,12 +18,15 @@
     }:
     let
       shared = [
+
         ./modules/alacritty
         ./modules/brave
         ./modules/cli.nix
+        ./modules/vesktop.nix
         ./modules/dev.nix
         ./modules/git.nix
         ./modules/nushell
+        ./modules/obsidian
         ./modules/rust.nix
         ./modules/sway
         ./modules/waybar

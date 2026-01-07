@@ -11,6 +11,8 @@
     options = "--delete-older-than 2d";
   };
 
+  programs.nix-ld.enable = true;
+
   fonts.packages = with pkgs; [
     nerd-fonts.jetbrains-mono
     noto-fonts
