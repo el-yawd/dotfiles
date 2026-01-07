@@ -15,6 +15,8 @@
       wl-clipboard # wl-copy and wl-paste for copy/paste from stdin / stdout
       waybar
       wmenu
+      swaylock-effects
+      autotiling
     ];
 
     extraSessionCommands = ''
@@ -23,6 +25,8 @@
       export QT_WAYLAND_DISABLE_WINDOWDECORATION="1"
       export _JAVA_AWT_WM_NONREPARENTING=1
       export MOZ_ENABLE_WAYLAND=1
+      export WLR_RENDERER=vulkan
+      export XDG_CURRENT_DESKTOP=sway
     '';
   };
 

@@ -33,6 +33,11 @@ in
       project_panel = {
         auto_fold_dirs = false;
       };
+      terminal = {
+        shell = {
+          program = "nu";
+        };
+      };
       buffer_font_family = ".ZedMono";
       ui_font_family = ".ZedMono";
       vim_mode = true;

@@ -18,16 +18,16 @@
     }:
     let
       shared = [
+        ./modules/alacritty
+        ./modules/brave
+        ./modules/cli.nix
+        ./modules/dev.nix
+        ./modules/git.nix
+        ./modules/nushell
+        ./modules/rust.nix
         ./modules/sway
         ./modules/waybar
-        ./modules/brave
-        ./modules/alacritty
-        ./modules/nushell
         ./modules/zed.nix
-        ./modules/dev.nix
-        ./modules/rust.nix
-        ./modules/git.nix
-        ./modules/cli.nix
 
         # Make home-manager use system pkgs
         home-manager.nixosModules.home-manager

@@ -1,0 +1,167 @@
+/* ============================================================================
+   WAYBAR STYLE - SYSTEMATIC DESIGN
+   ============================================================================
+   Color System: 4 semantic roles
+   - base-bg:   bar background
+   - module-bg: default module background
+   - accent:    emphasis modules
+   - alert:     warning/critical states
+   ============================================================================ */
+
+/* COLOR DEFINITIONS - Semantic roles only */
+@define-color base-bg    #181818; /* very dark, not pure black */
+@define-color module-bg  #202020; /* subtle separation */
+@define-color accent     #3a3f4b; /* desaturated blue-gray */
+@define-color alert-warn #caa86a; /* muted amber */
+@define-color alert-crit #c65c5c; /* muted red */
+@define-color text       #d6d2c8; /* soft off-white */
+
+/* RESET - Zero entropy foundation */
+* {
+    border: none;
+    border-radius: 0;
+    font-size: 14px;
+    font-family: "JetBrainsMono Nerd Font", monospace;
+    box-shadow: none;
+    text-shadow: none;
+    transition-duration: 0s;
+    min-height: 0;
+    margin: 0;
+}
+
+/* BAR - Opaque base, no transparency tricks */
+window#waybar {
+    background: @base-bg;
+    color: @text;
+}
+
+/* WORKSPACES - Clear visual hierarchy */
+#workspaces {
+    margin: 0 10px;
+    background: transparent;
+}
+
+#workspaces button {
+    padding: 0 12px;
+    color: rgba(235, 219, 178, 0.5);
+    background: transparent;
+}
+
+#workspaces button.visible {
+    color: @text;
+}
+
+#workspaces button.focused {
+    color: @text;
+    border-top: 3px solid @text;
+    border-bottom: 3px solid transparent;
+}
+
+#workspaces button.urgent {
+    color: @alert-crit;
+}
+
+/* MODULES - Uniform spacing, semantic coloring */
+#mode,
+#battery,
+#cpu,
+#memory,
+#network,
+#pulseaudio {
+    padding: 0 8px;
+    background: @module-bg;
+    color: @text;
+}
+
+/* Accent modules - emphasize different data types */
+#cpu {
+    background: @accent;
+}
+
+#network {
+    background: @accent;
+}
+
+/* Clock - highest visual weight */
+#clock {
+    padding: 0 12px;
+    background: @module-bg;
+    color: @text;
+}
+
+/* Battery states - semantic alerts */
+#battery.warning {
+    color: @alert-warn;
+}
+
+#battery.critical {
+    color: @alert-crit;
+    background: @module-bg;
+}
+
+#battery.charging {
+    color: @text;
+}
+
+/* ARROWS - Functional transitions, proper glyph sizing */
+#custom-arrow1,
+#custom-arrow2,
+#custom-arrow3,
+#custom-arrow4,
+#custom-arrow5,
+#custom-arrow6 {
+    font-size: 28px;
+    padding: 0;
+    margin: 0;
+}
+
+/* Arrow color rules: fg = next module bg, bg = prev module bg */
+#custom-arrow1 {
+    color: @module-bg;
+    background: transparent;
+}
+
+#custom-arrow2 {
+    color: @accent;
+    background: @module-bg;
+}
+
+#custom-arrow3 {
+    color: @module-bg;
+    background: @accent;
+}
+
+#custom-arrow4 {
+    color: @accent;
+    background: @module-bg;
+}
+
+#custom-arrow5 {
+    color: @module-bg;
+    background: @accent;
+}
+
+#custom-arrow6 {
+    color: @module-bg;
+    background: @module-bg;
+}
+
+/* WINDOW TITLE */
+#window {
+    color: rgba(235, 219, 178, 0.7);
+}
+
+/* TRAY */
+#tray {
+    background: transparent;
+}
+
+/* MODULE AFFORDANCES - Minimal visual grouping */
+#cpu,
+#memory,
+#network,
+#battery,
+#pulseaudio,
+#clock {
+    border-radius: 0;
+}

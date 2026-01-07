@@ -9,5 +9,6 @@
 
     pamixer
     pulsemixer
+    networkmanager
   ];
 }

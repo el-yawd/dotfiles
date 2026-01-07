@@ -1,76 +1,69 @@
-{ ... }:
+{ pkgs, ... }:
 {
   home-manager.users.yawd = {
+    fonts.fontconfig.enable = true;
+    home.packages = with pkgs; [
+      nerd-fonts.jetbrains-mono
+    ];
+
     programs.waybar = {
       enable = true;
       settings = {
         mainBar = {
           layer = "top";
           position = "top";
-          height = 34;
-          spacing = 4;
+          height = 10;
 
           modules-left = [
             "sway/workspaces"
             "sway/mode"
-            "cpu"
-            "memory"
           ];
-          modules-center = [ "clock" ];
+          modules-center = [ "sway/window" ];
           modules-right = [
-            "backlight"
-            "pulseaudio"
-            "network"
-            "battery"
             "tray"
+            "custom/arrow1"
+            "pulseaudio"
+            "custom/arrow2"
+            "cpu"
+            "custom/arrow3"
+            "memory"
+            "custom/arrow4"
+            "network"
+            "custom/arrow5"
+            "battery"
+            "custom/arrow6"
+            "clock"
           ];
 
           # Module Specific Configurations
           "sway/workspaces" = {
-            disable-scroll = true;
-            all-outputs = true;
-            format = "{name}: {icon}";
-            format-icons = {
-              "1" = "";
-              "2" = "";
-              "3" = "";
-              "urgent" = "";
-              "focused" = "";
-              "default" = "";
-            };
+            format = "{name}";
           };
 
-          "clock" = {
-            format = " {:%H:%M   %d/%m}";
-            tooltip-format = "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>";
+          "sway/mode" = {
+            format = "  {}";
           };
 
-          "cpu" = {
-            format = " {usage}%";
+          "sway/window" = {
+            max-length = 80;
             tooltip = false;
           };
 
-          "memory" = {
-            format = " {}%";
+          "clock" = {
+            format = "{:%d/%m/%y - %H:%M}";
+            tooltip = false;
           };
 
-          "backlight" = {
-            format = "{icon} {percent}%";
-            format-icons = [
-              ""
-              ""
-              ""
-              ""
-              ""
-              ""
-              ""
-              ""
-              ""
-            ];
+          "cpu" = {
+            format = " {}%";
+          };
+
+          "memory" = {
+            format = "  {}%";
           };
 
           "pulseaudio" = {
-            format = "{icon} {volume}%";
+            format = "{icon}  {volume}%";
             format-muted = "";
             format-icons = {
               default = [
@@ -79,23 +72,28 @@
                 ""
               ];
             };
-            on-click = "pavucontrol";
+            scroll-step = 5;
+            on-click = "alacritty -e pulsemixer";
+            tooltip = false;
           };
 
           "network" = {
-            format-wifi = " {essid}";
-            format-ethernet = " {ifname}";
-            format-disconnected = "⚠ Disconnected";
+            format = "{icon}  {ipaddr}/{cidr}";
+            format-icons = {
+              wifi = [
+                ""
+                ""
+                ""
+              ];
+              disconnected = [ "" ];
+            };
+            on-click = "alacritty -e nmtui";
+            tooltip = false;
           };
 
           "battery" = {
-            states = {
-              warning = 30;
-              critical = 15;
-            };
-            format = "{icon} {capacity}%";
-            format-charging = " {capacity}%";
-            format-plugged = " {capacity}%";
+            format = "{icon}  {capacity}%";
+            format-alt = "{icon} {time}";
             format-icons = [
               ""
               ""
@@ -103,51 +101,53 @@
               ""
               ""
             ];
+            format-charging = " {capacity}%  ";
+            interval = 1;
+            states = {
+              warning = 30;
+              critical = 10;
+            };
+            tooltip = false;
+          };
+
+          "tray" = {
+            icon-size = 18;
+          };
+
+          # Arrow separators - using powerline glyphs
+          "custom/arrow1" = {
+            format = " ";
+            tooltip = false;
+          };
+
+          "custom/arrow2" = {
+            format = "";
+            tooltip = false;
+          };
+
+          "custom/arrow3" = {
+            format = "";
+            tooltip = false;
+          };
+
+          "custom/arrow4" = {
+            format = "";
+            tooltip = false;
+          };
+
+          "custom/arrow5" = {
+            format = "";
+            tooltip = false;
+          };
+
+          "custom/arrow6" = {
+            format = "";
+            tooltip = false;
           };
         };
       };
-
-      # Basic CSS for a modern look
-      style = ''
-        * {
-          font-family: "JetBrainsMono Nerd Font";
-          font-size: 13px;
-          border: none;
-          border-radius: 0;
-        }
-
-        window#waybar {
-          background-color: rgba(43, 48, 59, 0.5);
-          border-bottom: 3px solid rgba(100, 114, 125, 0.5);
-          color: #ffffff;
-        }
-
-        #workspaces button {
-          padding: 0 5px;
-          background-color: transparent;
-          color: #ffffff;
-        }
-
-        #workspaces button.focused {
-          background-color: #64727D;
-          border-bottom: 3px solid #ffffff;
-        }
-
-        #clock, #battery, #cpu, #memory, #backlight, #network, #pulseaudio, #tray {
-          padding: 0 10px;
-          margin: 0 4px;
-        }
-
-        #battery.critical:not(.charging) {
-          background-color: #f53c3c;
-          color: #ffffff;
-          animation-name: blink;
-          animation-duration: 0.5s;
-          animation-timing-function: linear;
-          animation-iteration-count: infinite;
-          animation-direction: alternate;
-        }
-      '';
     };
   };
+
+  home-manager.users.yawd.home.file.".config/waybar/style.css".source = ./style.css;
 }
