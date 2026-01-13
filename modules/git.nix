@@ -11,6 +11,9 @@
           email = "reisdiego144@gmail.com";
         };
         init.defaultBranch = "main";
+        core = {
+          editor = "vim";
+        };
       };
     };
   };
