@@ -15,7 +15,6 @@
     fd
     jq
     just
-    neovim
     nil
     nixd
     gnumake

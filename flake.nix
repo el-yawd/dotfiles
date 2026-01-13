@@ -35,6 +35,8 @@
         ./modules/sway
         ./modules/waybar
         ./modules/zed.nix
+        ./modules/zsh.nix
+        ./modules/neovim.nix
         ./modules/zen-browser.nix
 
         # Make home-manager use system pkgs

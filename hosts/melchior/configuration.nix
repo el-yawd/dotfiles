@@ -81,6 +81,9 @@
     "flakes"
   ];
 
+  users.defaultUserShell = pkgs.zsh;
+  environment.shells = with pkgs; [ zsh ];
+
   system.stateVersion = "25.11";
   home-manager.users.yawd.home.stateVersion = "25.11";
 }

@@ -34,11 +34,20 @@ in
         auto_fold_dirs = false;
       };
 
+      terminal = {
+        env = {
+          TERM = "alacritty";
+        };
+        shell = {
+          program = "zsh";
+        };
+      };
+
       buffer_font_family = ".ZedMono";
       ui_font_family = ".ZedMono";
       vim_mode = true;
       autosave = "on_focus_change";
-      relative_line_numbers = true;
+      relative_line_numbers = "enabled";
     };
   };
 }
