@@ -3,3 +3,11 @@ history = 100000
 
 [terminal]
 shell = "zsh"
+
+[[keyboard.bindings]]
+key = "Escape"
+action = "ToggleViMode"
+
+[cursor]
+style = { shape = "Beam", blinking = "On" }
+vi_mode_style = { shape = "Block", blinking = "On" }

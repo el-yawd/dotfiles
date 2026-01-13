@@ -71,10 +71,11 @@
 
   environment.systemPackages = with pkgs; [
     zsh
-    vim
+    neovim
     wget
     git
   ];
+  environment.variables.EDITOR = "nvim";
 
   nix.settings.experimental-features = [
     "nix-command"

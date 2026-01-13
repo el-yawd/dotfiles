@@ -14,10 +14,6 @@
       cat = "bat";
     };
 
-    interactiveShellInit = ''
-      source ${pkgs.zsh-vi-mode}/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
-    '';
-
     ohMyZsh = {
       enable = true;
       plugins = [
