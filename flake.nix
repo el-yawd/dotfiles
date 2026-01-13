@@ -8,19 +8,24 @@
       # home-manager should track the same nixpkgs as the system
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    # Zen isn't on nixpkgs yet
+    zen-browser = {
+      url = "github:youwen5/zen-browser-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
     {
       nixpkgs,
       home-manager,
+      zen-browser,
       ...
     }:
     let
       shared = [
 
         ./modules/alacritty
-        ./modules/brave
         ./modules/cli.nix
         ./modules/vesktop.nix
         ./modules/dev.nix
@@ -31,6 +36,7 @@
         ./modules/sway
         ./modules/waybar
         ./modules/zed.nix
+        ./modules/zen-browser.nix
 
         # Make home-manager use system pkgs
         home-manager.nixosModules.home-manager
@@ -44,6 +50,7 @@
       nixosConfigurations = {
         melchior = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
+          specialArgs = { inherit zen-browser; };
           modules = shared ++ [
             ./hosts/melchior/configuration.nix
             ./hosts/melchior/hardware-configuration.nix
