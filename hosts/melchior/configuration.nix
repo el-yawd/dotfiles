@@ -88,6 +88,16 @@
   users.defaultUserShell = pkgs.zsh;
   environment.shells = with pkgs; [ zsh ];
 
+  hardware.bluetooth = {
+    enable = true;
+    powerOnBoot = true;
+    settings = {
+      General = {
+        Experimental = true;
+      };
+    };
+  };
+
   system.stateVersion = "25.11";
   home-manager.users.yawd.home.stateVersion = "25.11";
 }

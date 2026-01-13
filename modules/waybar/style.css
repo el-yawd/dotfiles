@@ -67,7 +67,8 @@ window#waybar {
 #cpu,
 #memory,
 #network,
-#pulseaudio {
+#pulseaudio,
+#bluetooth {
     padding: 0 8px;
     background: @module-bg;
     color: @text;
@@ -109,7 +110,8 @@ window#waybar {
 #custom-arrow3,
 #custom-arrow4,
 #custom-arrow5,
-#custom-arrow6 {
+#custom-arrow6,
+#custom-arrow7 {
     font-size: 28px;
     padding: 0;
     margin: 0;
@@ -146,6 +148,11 @@ window#waybar {
     background: @module-bg;
 }
 
+#custom-arrow7 {
+    color: @module-bg;
+    background: @module-bg;
+}
+
 /* WINDOW TITLE */
 #window {
     color: rgba(235, 219, 178, 0.7);
@@ -160,6 +167,7 @@ window#waybar {
 #cpu,
 #memory,
 #network,
+#bluetooth,
 #battery,
 #pulseaudio,
 #clock {

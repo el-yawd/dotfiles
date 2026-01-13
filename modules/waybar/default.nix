@@ -31,8 +31,10 @@
             "custom/arrow4"
             "network"
             "custom/arrow5"
-            "battery"
+            "bluetooth"
             "custom/arrow6"
+            "battery"
+            "custom/arrow7"
             "clock"
           ];
 
@@ -47,6 +49,14 @@
 
           "custom/lambda" = {
             format = "  λ";
+            tooltip = false;
+          };
+
+          "bluetooth" = {
+            format = " {status}";
+            format-connected = " {device_alias}";
+            format-connected-battery = " {device_alias} {device_battery_percentage}%";
+            on-click = "alacritty -e bluetuith";
             tooltip = false;
           };
 
@@ -85,14 +95,15 @@
           };
 
           "network" = {
-            format = "{icon}  {ipaddr}/{cidr}";
+            format-wifi = "{icon}  {essid}";
+            format-ethernet = "  {ifname}";
+            format-disconnected = "💀  Disconnected";
             format-icons = {
               wifi = [
                 ""
                 ""
                 ""
               ];
-              disconnected = [ "💀" ];
             };
             on-click = "alacritty -e nmtui";
             tooltip = false;
@@ -148,6 +159,11 @@
           };
 
           "custom/arrow6" = {
+            format = "";
+            tooltip = false;
+          };
+
+          "custom/arrow7" = {
             format = "";
             tooltip = false;
           };
