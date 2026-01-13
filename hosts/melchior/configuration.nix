@@ -5,6 +5,8 @@
     ./hardware-configuration.nix
   ];
 
+  virtualisation.docker.enable = true;
+
   nix.gc = {
     automatic = true;
     dates = "weekly";
@@ -64,6 +66,7 @@
     extraGroups = [
       "networkmanager"
       "wheel"
+      "docker"
     ];
   };
 
