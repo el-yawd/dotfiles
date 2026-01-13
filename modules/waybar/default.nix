@@ -15,6 +15,7 @@
           height = 10;
 
           modules-left = [
+            "custom/lambda"
             "sway/workspaces"
             "sway/mode"
           ];
@@ -44,6 +45,11 @@
             format = "  {}";
           };
 
+          "custom/lambda" = {
+            format = "  λ";
+            tooltip = false;
+          };
+
           "sway/window" = {
             max-length = 80;
             tooltip = false;
@@ -55,11 +61,12 @@
           };
 
           "cpu" = {
-            format = " {}%";
+            format = "  {usage}%";
+            interval = 1;
           };
 
           "memory" = {
-            format = "  {}%";
+            format = "$$ {}%";
           };
 
           "pulseaudio" = {
@@ -85,7 +92,7 @@
                 ""
                 ""
               ];
-              disconnected = [ "" ];
+              disconnected = [ "💀" ];
             };
             on-click = "alacritty -e nmtui";
             tooltip = false;
