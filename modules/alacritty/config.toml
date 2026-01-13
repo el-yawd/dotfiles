@@ -2,4 +2,4 @@
 history = 100000
 
 [terminal]
-shell = "nu"
+shell = "zsh"

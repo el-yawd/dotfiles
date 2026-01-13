@@ -30,7 +30,6 @@
         ./modules/vesktop.nix
         ./modules/dev.nix
         ./modules/git.nix
-        ./modules/nushell
         ./modules/obsidian
         ./modules/rust.nix
         ./modules/sway
