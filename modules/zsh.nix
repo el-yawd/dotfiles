@@ -16,6 +16,10 @@
       ndev = "nix develop -c $SHELL";
     };
 
+    initContent = ''
+      eval "$(direnv-instant hook zsh)"
+    '';
+
     oh-my-zsh = {
       enable = true;
       plugins = [

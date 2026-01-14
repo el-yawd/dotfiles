@@ -1,9 +1,11 @@
-{ pkgs, ... }:
+{ pkgs, direnv-instant, ... }:
 
 {
   imports = [
+    direnv-instant.nixosModules.direnv-instant
     ./hardware-configuration.nix
   ];
+  programs.direnv-instant.enable = true;
 
   virtualisation.docker.enable = true;
 

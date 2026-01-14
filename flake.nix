@@ -13,6 +13,7 @@
       url = "github:youwen5/zen-browser-flake";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    direnv-instant.url = "github:Mic92/direnv-instant";
   };
 
   outputs =
@@ -20,6 +21,7 @@
       nixpkgs,
       home-manager,
       zen-browser,
+      direnv-instant,
       ...
     }:
     let
@@ -33,6 +35,7 @@
         ./modules/obsidian
         ./modules/rust.nix
         ./modules/sway
+        ./modules/direnv.nix
         ./modules/waybar
         ./modules/zed.nix
         ./modules/zsh.nix
@@ -52,7 +55,9 @@
       nixosConfigurations = {
         melchior = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
-          specialArgs = { inherit zen-browser; };
+          specialArgs = {
+            inherit zen-browser direnv-instant;
+          };
           modules = shared ++ [
             ./hosts/melchior/configuration.nix
             ./hosts/melchior/hardware-configuration.nix

@@ -20,5 +20,7 @@
     gnumake
     fastfetch
     perf
+    direnv
+    tmux
   ];
 }
