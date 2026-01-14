@@ -2,19 +2,21 @@
   pkgs,
   ...
 }:
-
 {
-  programs.zsh = {
+  programs.zsh.enable = true;
+
+  home-manager.users.yawd.programs.zsh = {
     enable = true;
     syntaxHighlighting.enable = true;
-    autosuggestions.enable = true;
+    autosuggestion.enable = true;
     enableCompletion = true;
 
     shellAliases = {
       cat = "bat";
+      ndev = "nix develop -c $SHELL";
     };
 
-    ohMyZsh = {
+    oh-my-zsh = {
       enable = true;
       plugins = [
         "history-substring-search"
