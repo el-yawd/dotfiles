@@ -8,6 +8,10 @@
       # home-manager should track the same nixpkgs as the system
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nur = {
+      url = "github:nix-community/NUR";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     # Zen isn't on nixpkgs yet
     zen-browser = {
       url = "github:youwen5/zen-browser-flake";
@@ -21,6 +25,7 @@
       nixpkgs,
       home-manager,
       zen-browser,
+      nur,
       direnv-instant,
       ...
     }:
@@ -41,6 +46,7 @@
         ./modules/zsh.nix
         ./modules/neovim.nix
         ./modules/zen-browser.nix
+        ./modules/nur.nix
 
         # Make home-manager use system pkgs
         home-manager.nixosModules.home-manager
@@ -56,7 +62,7 @@
         melchior = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
           specialArgs = {
-            inherit zen-browser direnv-instant;
+            inherit zen-browser direnv-instant nur;
           };
           modules = shared ++ [
             ./hosts/melchior/configuration.nix

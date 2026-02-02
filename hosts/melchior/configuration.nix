@@ -100,6 +100,10 @@
     };
   };
 
+  boot.kernel.sysctl = {
+    "kernel.io_uring_group" = 100;
+  };
+
   system.stateVersion = "25.11";
   home-manager.users.yawd.home.stateVersion = "25.11";
 }

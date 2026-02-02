@@ -6,6 +6,7 @@
 {
   home-manager.users.yawd.home.packages = with pkgs; [
     gnuplot
+    geteduroam
 
     bluetuith
     light
