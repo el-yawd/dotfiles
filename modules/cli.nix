@@ -8,6 +8,7 @@
     gnuplot
     geteduroam
     geteduroam-cli
+    lazydocker
 
     openssl
     usbutils
