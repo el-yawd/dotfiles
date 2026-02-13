@@ -57,4 +57,8 @@
 
   home-manager.users.yawd.home.file.".config/i3/config".source = ./config;
   home-manager.users.yawd.home.file.".config/dunst/dunstrc".source = ./dunstrc;
+  home-manager.users.yawd.home.file.".config/rofi/config.rasi".text = ''
+    @theme "~/.config/rofi/theme.rasi"
+  '';
+  home-manager.users.yawd.home.file.".config/rofi/theme.rasi".source = ./rofi.rasi;
 }

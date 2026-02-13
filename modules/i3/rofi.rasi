@@ -1,0 +1,84 @@
+* {
+    base-bg: #181818;
+    module-bg: #202020;
+    accent: #3a3f4b;
+    text: #d6d2c8;
+    text-dim: #888880;
+    urgent: #c65c5c;
+
+    background-color: transparent;
+    text-color: @text;
+    font: "JetBrainsMono Nerd Font 11";
+}
+
+window {
+    background-color: @base-bg;
+    border: 2px solid;
+    border-color: @accent;
+    border-radius: 0px;
+    width: 400px;
+}
+
+mainbox {
+    padding: 10px;
+}
+
+inputbar {
+    background-color: @module-bg;
+    padding: 8px;
+    margin: 0 0 10px 0;
+    children: [ prompt, entry ];
+}
+
+prompt {
+    background-color: @accent;
+    padding: 4px 8px;
+    margin: 0 8px 0 0;
+}
+
+entry {
+    padding: 4px;
+    placeholder: "Search...";
+    placeholder-color: @text-dim;
+}
+
+listview {
+    lines: 8;
+    scrollbar: false;
+    fixed-height: false;
+}
+
+element {
+    padding: 8px;
+}
+
+element normal.normal {
+    background-color: transparent;
+}
+
+element selected.normal {
+    background-color: @accent;
+}
+
+element alternate.normal {
+    background-color: transparent;
+}
+
+element normal.urgent,
+element alternate.urgent {
+    text-color: @urgent;
+}
+
+element selected.urgent {
+    background-color: @urgent;
+    text-color: @base-bg;
+}
+
+element-icon {
+    size: 1.2em;
+    margin: 0 8px 0 0;
+}
+
+element-text {
+    vertical-align: 0.5;
+}

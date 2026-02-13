@@ -43,6 +43,7 @@
         ./modules/rust.nix
         ./modules/direnv.nix
         ./modules/polybar
+        ./modules/theme.nix
         ./modules/zed.nix
         ./modules/zsh.nix
         ./modules/neovim.nix

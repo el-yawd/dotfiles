@@ -11,7 +11,6 @@
     llvm
     clang
     tree
-    slack
     claude-code
     curl
     emacs
