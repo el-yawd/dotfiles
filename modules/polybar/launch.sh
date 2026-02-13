@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # Terminate already running bar instances
-pkill -x polybar 2>/dev/null
+pkill polybar 2>/dev/null
 sleep 0.5
 
 # Launch polybar on each monitor
