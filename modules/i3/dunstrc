@@ -1,0 +1,24 @@
+[global]
+    width = 300
+    height = (0, 100)
+    offset = (10, 10)
+    origin = top-right
+    follow = keyboard
+    transparency = 0
+    frame_color = "#3a3f4b"
+    font = "JetBrainsMono Nerd Font 10"
+
+[urgency_low]
+    background = "#181818"
+    foreground = "#d6d2c8"
+    timeout = 5
+
+[urgency_normal]
+    background = "#202020"
+    foreground = "#d6d2c8"
+    timeout = 5
+
+[urgency_critical]
+    background = "#c65c5c"
+    foreground = "#d6d2c8"
+    timeout = 0

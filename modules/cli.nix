@@ -7,9 +7,13 @@
   home-manager.users.yawd.home.packages = with pkgs; [
     gnuplot
     geteduroam
+    geteduroam-cli
 
+    openssl
+    usbutils
+    pcmanfm
     bluetuith
-    light
+    brightnessctl
     pamixer
     tldr
     pulsemixer

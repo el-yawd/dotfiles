@@ -1,0 +1,149 @@
+# $mod is the Windows key.
+set $mod Mod4
+
+# Monitor outputs (run `xrandr` to find your output names)
+set $laptop eDP-1
+set $external HDMI-1
+
+# i3-gaps settings (requires i3-gaps)
+smart_borders on
+default_border pixel 1
+default_floating_border pixel 1
+
+gaps inner 5
+gaps outer 5
+
+# Keyboard laptop stuff (brightness)
+bindsym XF86MonBrightnessDown exec brightnessctl set 10%-
+bindsym XF86MonBrightnessUp exec brightnessctl set +10%
+
+# Audio controls
+bindsym XF86AudioRaiseVolume exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+
+bindsym XF86AudioLowerVolume exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-
+bindsym XF86AudioMute exec wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
+
+# Media controls (playerctl)
+bindsym XF86AudioPlay exec playerctl play-pause
+bindsym XF86AudioPause exec playerctl play-pause
+bindsym XF86AudioNext exec playerctl next
+bindsym XF86AudioPrev exec playerctl previous
+bindsym XF86AudioStop exec playerctl stop
+
+bindsym $mod+Shift+s sticky toggle
+
+# Launch a terminal
+bindsym $mod+Return exec alacritty
+
+bindsym $mod+z exec zeditor
+bindsym $mod+d exec zeditor ~/dotfiles
+
+bindsym $mod+e exec emacs
+
+bindsym $mod+b exec alacritty -e btop
+
+bindsym $mod+r exec rofi -show drun
+
+# Kill window
+bindsym $mod+q kill
+
+bindsym $mod+Shift+w exec zen
+
+# Launch file manager
+bindsym $mod+Control+f exec thunar
+
+# Monitor configuration (arandr GUI)
+bindsym $mod+m exec arandr
+
+# Screenshots (X11 - using maim instead of grim)
+bindsym $mod+p exec maim | xclip -selection clipboard -t image/png && dunstify "Screenshot" "Saved to clipboard"
+bindsym $mod+Shift+p exec maim -s | xclip -selection clipboard -t image/png && dunstify "Screenshot" "Selection copied to clipboard"
+
+# Durable Screenshots
+bindsym $mod+s+p exec sh -c 'f=~/Pictures/screenshot-$(date +%Y-%m-%d_%H-%M-%S).png; maim "$f" && xclip -selection clipboard -t image/png < "$f" && dunstify "Screenshot" "Saved and copied to clipboard"'
+bindsym $mod+Shift+s+p exec sh -c 'f=~/Pictures/screenshot-$(date +%Y-%m-%d_%H-%M-%S).png; maim -s "$f" && xclip -selection clipboard -t image/png < "$f" && dunstify "Screenshot" "Selection saved and copied"'
+
+bindsym $mod+a exec pulsemixer
+
+# Workspace assignments to monitors
+# External monitor (top) gets workspaces 1-3
+workspace 1 output $external $laptop
+workspace 2 output $external $laptop
+workspace 3 output $external $laptop
+# Laptop (bottom) gets workspaces 4-5
+workspace 4 output $laptop
+workspace 5 output $laptop
+
+# Switch to workspace
+bindsym $mod+1 workspace number 1
+bindsym $mod+2 workspace number 2
+bindsym $mod+3 workspace number 3
+bindsym $mod+4 workspace number 4
+bindsym $mod+5 workspace number 5
+
+# Move focused container to workspace and follow
+bindsym $mod+Shift+1 move container to workspace number 1; workspace number 1
+bindsym $mod+Shift+2 move container to workspace number 2; workspace number 2
+bindsym $mod+Shift+3 move container to workspace number 3; workspace number 3
+bindsym $mod+Shift+4 move container to workspace number 4; workspace number 4
+bindsym $mod+Shift+5 move container to workspace number 5; workspace number 5
+
+# Focus (vim-style)
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+
+# Move windows
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
+
+# Reload i3 config
+bindsym $mod+Ctrl+r reload
+
+# Restart polybar
+bindsym $mod+Ctrl+p exec ~/.config/polybar/launch.sh
+
+# Quit i3
+bindsym $mod+Shift+q exec i3-msg exit
+
+floating_modifier $mod
+
+# Bar (launches on all monitors)
+exec_always --no-startup-id ~/.config/polybar/launch.sh
+
+# Resize mode
+mode "resize" {
+    bindsym h resize shrink width 5 px or 5 ppt
+    bindsym j resize grow height 5 px or 5 ppt
+    bindsym k resize shrink height 5 px or 5 ppt
+    bindsym l resize grow width 5 px or 5 ppt
+
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+bindsym $mod+Shift+r mode "resize"
+
+# Lock screen (run `betterlockscreen -u ~/path/to/wallpaper.png` to cache first)
+set $lock betterlockscreen -l blur
+
+# Live mode for power actions
+mode "live" {
+    bindsym s exec systemctl poweroff; mode "default"
+    bindsym r exec systemctl reboot; mode "default"
+    bindsym l exec $lock; mode "default"
+
+    bindsym Escape mode "default"
+    bindsym Return mode "default"
+}
+bindsym $mod+Shift+x mode "live"
+
+bindsym $mod+Ctrl+l exec $lock
+
+# Autostart
+exec --no-startup-id xss-lock --transfer-sleep-lock -- $lock
+exec --no-startup-id picom -b
+exec --no-startup-id dunst
+exec --no-startup-id nm-applet
+exec_always --no-startup-id autotiling

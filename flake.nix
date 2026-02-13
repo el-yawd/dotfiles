@@ -36,12 +36,13 @@
         ./modules/cli.nix
         ./modules/vesktop.nix
         ./modules/dev.nix
+        ./modules/i3
+        ./modules/steam.nix
         ./modules/git.nix
         ./modules/obsidian
         ./modules/rust.nix
-        ./modules/sway
         ./modules/direnv.nix
-        ./modules/waybar
+        ./modules/polybar
         ./modules/zed.nix
         ./modules/zsh.nix
         ./modules/neovim.nix

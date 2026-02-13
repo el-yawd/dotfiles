@@ -43,6 +43,8 @@ in
         };
       };
 
+      disable_ai = true;
+
       buffer_font_family = ".ZedMono";
       ui_font_family = ".ZedMono";
       vim_mode = true;
