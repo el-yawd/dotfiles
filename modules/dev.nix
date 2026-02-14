@@ -26,5 +26,16 @@
     direnv
     tmux
     uv
+    unzip
+    imagemagick
+    tectonic
+    ghostscript
+    lazydocker
+    lazygit
+    sqlite
+
+    ripgrep
+    fzf
+    ast-grep
   ];
 }
