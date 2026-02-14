@@ -18,6 +18,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     direnv-instant.url = "github:Mic92/direnv-instant";
+    lazyvim-nix = {
+      url = "github:pfassina/lazyvim-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -27,6 +31,8 @@
       zen-browser,
       nur,
       direnv-instant,
+
+      lazyvim-nix,
       ...
     }:
     let
@@ -64,7 +70,12 @@
         melchior = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
           specialArgs = {
-            inherit zen-browser direnv-instant nur;
+            inherit
+              zen-browser
+              direnv-instant
+              nur
+              lazyvim-nix
+              ;
           };
           modules = shared ++ [
             ./hosts/melchior/configuration.nix

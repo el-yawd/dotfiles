@@ -27,7 +27,7 @@
       '';
 
       envExtra = ''
-        export PATH="/home/yawd/.local/bin:$PATH"
+        export PATH="/home/yawd/.local/bin:/home/yawd/.cargo/bin:$PATH"
       '';
     };
 

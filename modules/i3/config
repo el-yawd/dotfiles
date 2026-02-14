@@ -35,7 +35,7 @@ bindsym $mod+Shift+s sticky toggle
 bindsym $mod+Return exec alacritty
 
 bindsym $mod+z exec zeditor
-bindsym $mod+d exec zeditor ~/dotfiles
+bindsym $mod+d exec alacritty -e nvim ~/dotfiles
 
 bindsym $mod+e exec emacs
 
@@ -120,8 +120,6 @@ for_window [class="Pavucontrol"] floating enable
 for_window [class="Nm-connection-editor"] floating enable
 for_window [class="Blueman-manager"] floating enable
 for_window [class=".blueman-manager-wrapped"] floating enable
-for_window [window_role="pop-up"] floating enable
-for_window [window_role="task_dialog"] floating enable
 
 # Bar (launches on all monitors)
 exec_always --no-startup-id ~/.config/polybar/launch.sh

@@ -1,11 +1,16 @@
 {
+  lazyvim-nix,
   ...
 }:
 {
-  programs.neovim = {
-    enable = true;
-    defaultEditor = true;
-    vimAlias = true;
-    viAlias = true;
+  home-manager.users.yawd = {
+    imports = [ lazyvim-nix.homeManagerModules.default ];
+
+    programs.lazyvim = {
+      enable = true;
+      extras = {
+        lang.nix.enable = true;
+      };
+    };
   };
 }

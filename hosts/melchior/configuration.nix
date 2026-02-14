@@ -70,6 +70,7 @@
       "wheel"
       "docker"
       "video"
+      "input"
     ];
   };
 
@@ -117,7 +118,7 @@
       STOP_CHARGE_THRESH_BAT0 = 80;
     };
   };
-  services.power-profiles-daemon.enable = false;  # Conflicts with TLP
+  services.power-profiles-daemon.enable = false; # Conflicts with TLP
 
   boot.kernel.sysctl = {
     "kernel.io_uring_group" = 100;
