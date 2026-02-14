@@ -15,15 +15,12 @@
       shellAliases = {
         cat = "bat";
         ndev = "nix develop -c $SHELL";
-        # Todo: Temporary
-        python = "python3.14";
       };
 
       initExtra = ''
-        # Hide default prompt before starship loads
-        PROMPT=""
         eval "$(direnv-instant hook zsh 2>/dev/null)"
         eval "$(zoxide init zsh 2>/dev/null)"
+        eval "$(mise activate zsh 2>/dev/null)"
       '';
 
       envExtra = ''
@@ -54,7 +51,8 @@
     };
 
     home.packages = with pkgs; [
-      zoxide # smarter cd (replaces z plugin)
+      zoxide
+      mise
     ];
   };
 }
